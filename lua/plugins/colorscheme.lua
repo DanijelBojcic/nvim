@@ -5,7 +5,6 @@ return {
     name = "catppuccin",
     opts = {
       integrations = {
-        aerial = true,
         alpha = true,
         cmp = true,
         dashboard = true,

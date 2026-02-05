@@ -7,13 +7,7 @@ return {
       "danielfalk/smart-open.nvim",
     },
     keys = {
-      {
-        ";t",
-        function()
-          require("telescope.builtin").find_files()
-        end,
-        desc = "Find Files",
-      },
+      { ";t", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
       { ";f", "<cmd>Telescope smart_open<cr>", desc = "Smart Open" },
       {
         ";r",
@@ -59,12 +53,24 @@ return {
         layout_config = { prompt_position = "top" },
         sorting_strategy = "ascending",
         winblend = 0,
+        hidden = true,
+        file_ignore_patterns = {
+          "node_modules",
+          "%.git/",
+          "k8s",
+          "assets",
+          "android/app/build",
+          "ios/Pods",
+          "%.lock",
+          "%.gradle",
+          "build/",
+          "dist/",
+        },
       },
-      file_ignore_patterns = {
-        "**/node_modules/**",
-        "**/.git/**",
-        "**/k8s/**",
-        "assets",
+      pickers = {
+        find_files = {
+          find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git", "--exclude", "node_modules" },
+        },
       },
     },
     config = function(_, opts)
